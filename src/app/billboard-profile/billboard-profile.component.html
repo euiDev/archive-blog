@@ -1,0 +1,18 @@
+<ng-container *ngFor="let billboardInfo of billboard$ | async">
+    <div class="columns">
+        <div class="column is-half">
+            <img [src]="billboardInfo.billboardImage" [alt]="billboardInfo.name">
+        </div>
+        <div class="column">
+            <h1 class="title is-3">{{ billboardInfo.name }}</h1>
+            <p class="subtitle is-6"><span class="has-text-info">{{ billboardInfo.station }}</span> | <span class="has-text-link">{{ billboardInfo.type }}</span> | ID: {{ billboardInfo.id }}</p>
+            <p class="is-size-6"><span class="has-text-danger">{{ billboardInfo.bound }}</span> | <span class="has-text-weight-bold">Size:</span> {{ billboardInfo.size }}</p>
+            <p class="is-size-6"><span class="has-text-weight-bold">Info:</span> {{ billboardInfo.info }}</p>
+            <p class="is-size-6"><span class="has-text-weight-bold">Address:</span> {{ billboardInfo.address }}</p>
+            <img class="map-image" [src]="billboardInfo.mapImage" [alt]="billboardInfo.name">
+            <div class="buttons">
+                <button class="button is-info">Book now!</button>
+            </div>
+        </div>
+    </div>
+</ng-container>

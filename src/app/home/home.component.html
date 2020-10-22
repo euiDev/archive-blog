@@ -1,0 +1,62 @@
+
+<div class="columns">
+    <div class="column is-one-fifth">
+    <aside class="menu">
+        <p class="menu-label">
+        Filters
+        </p>
+        <ul class="menu-list">
+        <li>
+            <label class="checkbox">
+            <input type="checkbox" (change)="addFilter('digital')" [checked]="types.digital.value">
+            Digital Billboard
+            </label>
+        </li>
+        <li>
+            <label class="checkbox">
+            <input type="checkbox" (change)="addFilter('traditional')" [checked]="types.traditional.value">
+            Traditional Billboard
+            </label>
+        </li>
+        </ul>
+        <p class="menu-label">
+        Sizes
+        </p>
+        <ul class="menu-list">
+        <li>
+            <label class="checkbox">
+            <input type="checkbox" (change)="addFilter('threeXseven')" [checked]="types.threeXseven.value">
+            3" x 7"
+            </label>
+        </li>
+        <li>
+            <label class="checkbox">
+            <input type="checkbox" (change)="addFilter('twoXfive')" [checked]="types.twoXfive.value">
+            2" x 5"
+            </label>
+        </li>
+        </ul>
+        <div class="buttons">
+        <button class="button is-info" (click)="filterBillboards()">Apply</button>
+        <button class="button is-dark" (click)="clearFilter()">Clear</button>
+        </div>
+    </aside>
+    </div>
+    <div class="column">
+    <div class="columns" *ngFor="let billboard of billboards$ | async">
+        <div class="column is-one-third">
+            <img [src]="billboard.billboardImage" [alt]="billboard.name">
+        </div>
+        <div class="column is-one-third">
+            <p class="subtitle is-7 has-text-info"><span class="has-text-info">{{ billboard.station }}</span> | <span class="has-text-link">{{ billboard.type }}</span> </p>
+            <p class="title is-5 has-text-weight-bold">{{ billboard.name }}</p> 
+            <p class="is-size-6"><span class="has-text-danger">{{ billboard.bound }}</span> | <span class="has-text-weight-bold">Size:</span> {{ billboard.size }}</p>
+            <p class="is-size-6"><span class="has-text-weight-bold">Vicinity:</span> {{ billboard.vicinity }}</p>
+            <p class="is-size-6"><span class="has-text-weight-bold">Details:</span> {{ billboard.address }}</p>
+        </div>
+        <div class="column is-one-third">
+        <button class="button is-info button-property" [routerLink]="['billboard/', billboard.id]">VIEW PROPERTY</button>
+        </div>
+    </div>
+    </div>
+</div>
